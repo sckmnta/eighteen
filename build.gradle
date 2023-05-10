@@ -36,7 +36,8 @@ dependencies {
             "org.aeonbits.owner:owner:1.0.12",
             "com.codeborne:selenide:6.12.3",
             "org.assertj:assertj-core:3.24.2",
-            "io.rest-assured:rest-assured:5.3.0"
+            "io.rest-assured:rest-assured:5.3.0",
+            "io.rest-assured:json-schema-validator:5.3.0"
     )
 }
 compileJava {
