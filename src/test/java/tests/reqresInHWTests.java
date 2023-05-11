@@ -50,7 +50,7 @@ public class reqresInHWTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body(hasKey("updatedAt"));//does not work somehow
+                .body("updatedAt", hasLength(24));
     }
 
     @Test
