@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -84,10 +85,11 @@ public class SelenoidTest {
                 .statusCode(200)
                 .body("browsers.chrome", hasKey("100.0"));
     }
+
     @Test
     void checkResponseBadPractice() { // BAD PRACTICE111
-        String expectedResponse = "{total:20,used:0,queued:0,pending:0,browsers:{"+
-                "android:{8.1:{}},chrome:{100.0:{},99.0:{}},"+
+        String expectedResponse = "{total:20,used:0,queued:0,pending:0,browsers:{" +
+                "android:{8.1:{}},chrome:{100.0:{},99.0:{}}," +
                 "chrome-mobile:{86.0:{}},firefox:{97.0:{},98.0:{}},opera:{84.0:{},85.0:{}}}}"; //spaces mistake, does not matter
         String actualResponse = given()
                 .log().uri()
@@ -100,10 +102,11 @@ public class SelenoidTest {
                 .extract().response().asString();
         assertEquals(expectedResponse, actualResponse);
     }
+
     @Test
-    void checkResponseWithGoodPractice(){
+    void checkResponseWithGoodPractice() {
         Integer expectedTotal = 20;
-       Integer actualTotal = given()
+        Integer actualTotal = given()
                 .log().uri()
                 .when()
                 .get("https://selenoid.autotests.cloud/status")
@@ -114,8 +117,9 @@ public class SelenoidTest {
                 .extract().path("total");
         assertEquals(expectedTotal, actualTotal);
     }
+
     @Test
-    void checkJSONScheme(){
+    void checkJSONScheme() {
         given()
                 .log().uri()
                 .when()

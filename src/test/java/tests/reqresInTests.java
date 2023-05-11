@@ -4,9 +4,7 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.hasKey;
+
 import static org.hamcrest.Matchers.is;
 
 public class reqresInTests {
@@ -18,9 +16,8 @@ public class reqresInTests {
      */
 
 
-
     @Test
-    void reqresLoginTest(){
+    void reqresLoginTest() {
 
         String body = "{\"email\": \"eve.holt@reqres.in\",\"password\": \"cityslicka\"}";
 
@@ -38,7 +35,7 @@ public class reqresInTests {
     }
 
     @Test
-    void reqresUnsuccesfulLoginTestWithoutMail(){
+    void reqresUnsuccesfulLoginTestWithoutMail() {
 
         String body = "{\"password\": \"cityslicka\"}";
 
@@ -56,7 +53,7 @@ public class reqresInTests {
     }
 
     @Test
-    void reqresUnsuccesfulLoginTestWithoutPassword(){
+    void reqresUnsuccesfulLoginTestWithoutPassword() {
 
         String body = "{\"email\": \"eve.holt@reqres.in\"}";
 
@@ -74,7 +71,7 @@ public class reqresInTests {
     }
 
     @Test
-    void reqresUnsuccesfulLoginTestWithEmptyData(){
+    void reqresUnsuccesfulLoginTestWithEmptyData() {
 
         String body = "{ }";
 
