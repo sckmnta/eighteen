@@ -1,6 +1,8 @@
 package tests;
 
 import io.restassured.http.ContentType;
+import models.lombok.LoginBodyLombockModel;
+import models.lombok.LoginResponseLombockModel;
 import models.pojo.LoginBodyPOJOModel;
 import models.pojo.LoginResponsePOJOModel;
 import org.junit.jupiter.api.Test;
@@ -12,12 +14,12 @@ public class ReqresTestWithLombok {
     @Test
     void reqresLoginTestWithLombock() {
 
-        LoginBodyPOJOModel loginBody = new LoginBodyPOJOModel();
+        LoginBodyLombockModel loginBody = new LoginBodyLombockModel();
         loginBody.setEmail("eve.holt@reqres.in");
         loginBody.setPassword("cityslicka");
 
 
-        LoginResponsePOJOModel response =
+        LoginResponseLombockModel response =
                 given()
                         .log().uri()
                         .body(loginBody)
@@ -28,7 +30,7 @@ public class ReqresTestWithLombok {
                         .log().status()
                         .log().body()
                         .statusCode(200)
-                        .extract().as(LoginResponsePOJOModel.class);
+                        .extract().as(LoginResponseLombockModel.class);
         //assertEquals("QpwL5tke4Pnpja7X4", response.getToken());
         assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
     }
