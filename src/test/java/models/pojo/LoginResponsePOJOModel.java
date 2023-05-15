@@ -1,6 +1,6 @@
 package models.pojo;
 
-public class LoginResponseModel {
+public class LoginResponsePOJOModel {
     // {"token": "QpwL5tke4Pnpja7X4"}
 
     String token;
