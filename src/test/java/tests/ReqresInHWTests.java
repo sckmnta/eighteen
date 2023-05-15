@@ -8,7 +8,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.*;
 
 
-public class reqresInHWTests {
+public class ReqresInHWTests {
 
 
     @Test

@@ -7,7 +7,7 @@ import static io.restassured.RestAssured.given;
 
 import static org.hamcrest.Matchers.is;
 
-public class reqresInTests {
+public class ReqresInTests {
 
      /*
     1. Make request (POST) to https://reqres.in/api/login with body {"email": "eve.holt@reqres.in","password": "cityslicka"}
