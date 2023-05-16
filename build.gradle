@@ -40,7 +40,7 @@ dependencies {
             "io.rest-assured:rest-assured:5.3.0",
             "io.rest-assured:json-schema-validator:5.3.0"
     )
-    testImplementation 'org.projectlombok:lombok:1.18.22'
+    testImplementation 'org.projectlombok:lombok:1.18.26'
 }
 compileJava {
     options.encoding = 'UTF-8'
@@ -55,4 +55,14 @@ test {
 test {
     useJUnitPlatform()
     systemProperties(System.getProperties())
+}
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }

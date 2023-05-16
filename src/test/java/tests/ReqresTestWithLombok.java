@@ -3,8 +3,6 @@ package tests;
 import io.restassured.http.ContentType;
 import models.lombok.LoginBodyLombockModel;
 import models.lombok.LoginResponseLombockModel;
-import models.pojo.LoginBodyPOJOModel;
-import models.pojo.LoginResponsePOJOModel;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -21,6 +19,7 @@ public class ReqresTestWithLombok {
 
         LoginResponseLombockModel response =
                 given()
+                        .filter(new AllureRestAssured()) //не подтягвает
                         .log().uri()
                         .body(loginBody)
                         .contentType(ContentType.JSON)
