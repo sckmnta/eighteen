@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import models.lombok.LoginBodyLombockModel;
 import models.lombok.LoginResponseLombockModel;
@@ -19,7 +20,7 @@ public class ReqresTestWithLombok {
 
         LoginResponseLombockModel response =
                 given()
-                        .filter(new AllureRestAssured()) //не подтягвает
+                        .filter(new AllureRestAssured())
                         .log().uri()
                         .body(loginBody)
                         .contentType(ContentType.JSON)
@@ -30,7 +31,6 @@ public class ReqresTestWithLombok {
                         .log().body()
                         .statusCode(200)
                         .extract().as(LoginResponseLombockModel.class);
-        //assertEquals("QpwL5tke4Pnpja7X4", response.getToken());
         assertThat(response.getToken()).isEqualTo("QpwL5tke4Pnpja7X4");
     }
 }
