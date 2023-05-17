@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReqresInTests {
 
@@ -17,21 +19,22 @@ public class ReqresInTests {
 
 
     @Test
-    void reqresLoginTest() {
+    void reqresLoginTestWithPOJO() {
 
         String body = "{\"email\": \"eve.holt@reqres.in\",\"password\": \"cityslicka\"}";
 
-        given()
-                .log().uri()
-                .body(body)
-                .contentType(ContentType.JSON)
-                .when()
-                .post("https://reqres.in/api/login")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body("token", is("QpwL5tke4Pnpja7X4"));
+
+                given()
+                        .log().uri()
+                        .body(body)
+                        .contentType(ContentType.JSON)
+                        .when()
+                        .post("https://reqres.in/api/login")
+                        .then()
+                        .log().status()
+                        .log().body()
+                        .statusCode(200)
+                        .body("token", is("QpwL5tke4Pnpja7X4"));
     }
 
     @Test
