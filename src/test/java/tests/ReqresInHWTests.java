@@ -50,7 +50,7 @@ public class ReqresInHWTests {
                 .log().status()
                 .log().body()
                 .statusCode(200)
-                .body("updatedAt", hasLength(24)); //todo по образу и подобию https://stackoverflow.com/questions/50710872/assert-restassured-response-body-with-regex
+                .body("updatedAt", hasLength(24)); //todo https://stackoverflow.com/questions/50710872/assert-restassured-response-body-with-regex
     }
 
     @Test
