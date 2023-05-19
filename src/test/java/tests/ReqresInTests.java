@@ -24,17 +24,17 @@ public class ReqresInTests {
         String body = "{\"email\": \"eve.holt@reqres.in\",\"password\": \"cityslicka\"}";
 
 
-                given()
-                        .log().uri()
-                        .body(body)
-                        .contentType(ContentType.JSON)
-                        .when()
-                        .post("https://reqres.in/api/login")
-                        .then()
-                        .log().status()
-                        .log().body()
-                        .statusCode(200)
-                        .body("token", is("QpwL5tke4Pnpja7X4"));
+        given()
+                .log().uri()
+                .body(body)
+                .contentType(ContentType.JSON)
+                .when()
+                .post("https://reqres.in/api/login")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .body("token", is("QpwL5tke4Pnpja7X4"));
     }
 
     @Test
