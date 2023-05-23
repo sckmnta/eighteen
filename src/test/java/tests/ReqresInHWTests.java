@@ -4,6 +4,7 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
 import models.lombok.RegisterBodyLombockModel;
 import models.lombok.RegisterResponseLombokModel;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -20,6 +21,7 @@ public class ReqresInHWTests {
 
 
     @Test
+    @Tag("remote")
     void checkResponseStatus() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setStatusCode("404");
@@ -42,6 +44,7 @@ public class ReqresInHWTests {
     }
 
     @Test
+    @Tag("remote")
     void checkUserListJSONSchema() {
         step("make response and verify if JSON schema equals expected", () ->
                 given()
@@ -58,6 +61,7 @@ public class ReqresInHWTests {
     }
 
     @Test
+    @Tag("remote")
     void successfulPatchTest() {
 
         step("prepare test data");
@@ -86,6 +90,7 @@ public class ReqresInHWTests {
     }
 
     @Test
+    @Tag("remote")
     void successfulDeleteTest() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setStatusCode("204");
@@ -101,6 +106,7 @@ public class ReqresInHWTests {
 
 
     @Test
+    @Tag("remote")
     void successfulRegistrationTest() {
         step("prepare testdata");
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
@@ -123,6 +129,7 @@ public class ReqresInHWTests {
     }
 
     @Test
+    @Tag("remote")
     void unsuccessfulRegistrationTestWithoutPassword() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setEmail("sydney@fife");
@@ -141,6 +148,7 @@ public class ReqresInHWTests {
     }
 
     @Test
+    @Tag("remote")
     void unsuccessfulRegistrationTestWithoutMail() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setPassword("pistol");
