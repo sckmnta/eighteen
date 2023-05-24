@@ -27,6 +27,7 @@ allure {
             }
         }
     }
+
 }
 
 dependencies {
@@ -48,5 +49,10 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+}
+task hw_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("HW")
     }
 }

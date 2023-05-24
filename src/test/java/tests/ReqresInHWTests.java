@@ -21,7 +21,7 @@ public class ReqresInHWTests {
 
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void checkResponseStatus() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setStatusCode("404");
@@ -44,7 +44,7 @@ public class ReqresInHWTests {
     }
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void checkUserListJSONSchema() {
         step("make response and verify if JSON schema equals expected", () ->
                 given()
@@ -61,7 +61,7 @@ public class ReqresInHWTests {
     }
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void successfulPatchTest() {
 
         step("prepare test data");
@@ -90,7 +90,7 @@ public class ReqresInHWTests {
     }
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void successfulDeleteTest() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setStatusCode("204");
@@ -106,7 +106,7 @@ public class ReqresInHWTests {
 
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void successfulRegistrationTest() {
         step("prepare testdata");
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
@@ -129,7 +129,7 @@ public class ReqresInHWTests {
     }
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void unsuccessfulRegistrationTestWithoutPassword() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setEmail("sydney@fife");
@@ -148,7 +148,7 @@ public class ReqresInHWTests {
     }
 
     @Test
-    @Tag("remote")
+    @Tag("HW")
     void unsuccessfulRegistrationTestWithoutMail() {
         RegisterBodyLombockModel registerBody = new RegisterBodyLombockModel();
         registerBody.setPassword("pistol");
