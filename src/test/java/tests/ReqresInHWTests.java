@@ -2,10 +2,12 @@ package tests;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.http.ContentType;
+import models.lombok.PatchBodyLombokModel;
 import models.lombok.RegisterBodyLombockModel;
 import models.lombok.RegisterResponseLombokModel;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import specs.JSONSpec;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
@@ -13,6 +15,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.assertj.core.api.Assertions.assertThat;
 import static specs.DeleteSpec.deleteRequestSpec;
 import static specs.DeleteSpec.deleteResponseSpec;
+import static specs.JSONSpec.jsonResponseSpec;
+import static specs.PatchSpec.patchRequestSpec;
+import static specs.PatchSpec.patchResponseSpec;
 import static specs.RegisterSpec.registerRequestSpec;
 import static specs.RegisterSpec.registerResponseSpec;
 
@@ -27,14 +32,11 @@ public class ReqresInHWTests {
         registerBody.setStatusCode("404");
 
         RegisterResponseLombokModel response = step("make request", () ->
-                given()
-                        .filter(new AllureRestAssured())
-                        .log().uri()
+                given(registerRequestSpec)
                         .when()
-                        .get("https://reqres.in/api/unknown/23")
+                        .get("api/unknown/23")
                         .then()
-                        .log().status()
-                        .log().body()
+                        .spec(registerResponseSpec)
                         .statusCode(404))
                 .extract().as(RegisterResponseLombokModel.class);
         step("verify no response", () ->
@@ -47,39 +49,28 @@ public class ReqresInHWTests {
     @Tag("HW")
     void checkUserListJSONSchema() {
         step("make response and verify if JSON schema equals expected", () ->
-                given()
-                        .filter(new AllureRestAssured())
-                        .log().uri()
+                given(registerRequestSpec)
                         .when()
-                        .get("https://reqres.in/api/unknown")
+                        .get("api/unknown")
                         .then()
-                        .log().status()
-                        .log().body()
-                        .statusCode(200)
+                        .spec(jsonResponseSpec)
                         .body(matchesJsonSchemaInClasspath
                                 ("schemes/userlist-scheme-response.json")));
     }
 
     @Test
-    @Tag("HW")
     void successfulPatchTest() {
 
         step("prepare test data");
-        RegisterBodyLombockModel loginBody = new RegisterBodyLombockModel();
+        PatchBodyLombokModel loginBody = new PatchBodyLombokModel();
         loginBody.setUsername("morpheus");
         loginBody.setJob("zion resident");
         RegisterResponseLombokModel response = step("make request", () ->
-                given(registerRequestSpec)
-                        .filter(new AllureRestAssured())
-                        .log().uri()
-                        .body(loginBody)
-                        .contentType(ContentType.JSON)
+                given(patchRequestSpec)
                         .when()
-                        .patch("https://reqres.in/api/users/2")
+                        .patch("api/users/2")
                         .then()
-                        .log().status()
-                        .log().body()
-                        .statusCode(200)
+                        .spec(patchResponseSpec)
                         .extract().as(RegisterResponseLombokModel.class));
         step("verify job", () ->
                 assertThat(response.getJob()).isEqualTo("zion resident"));
